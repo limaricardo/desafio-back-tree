@@ -30,5 +30,27 @@ namespace DesafioBackTree.Repository
 
             return saved > 0 ? true : false;
         }
+
+        public bool ProductExists(int id)
+        {
+            return _context.Products.Any(c => c.Id == id);
+        }
+
+        public bool UpdateProduct(Product product)
+        {
+            _context.Update(product);
+            return Save();
+        }
+
+        public bool DeleteProduct(Product product)
+        {
+            _context.Remove(product);
+            return Save();
+        }
+
+        public Product GetProduct(int id)
+        {
+            return _context.Products.Where(e => e.Id == id).FirstOrDefault();
+        }
     }
 }
